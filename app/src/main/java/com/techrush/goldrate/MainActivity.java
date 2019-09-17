@@ -94,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         ratestring = sharedPreferences.getString("goldrate","");
         datestring = sharedPreferences.getString("date"," ");
         String ratePerGram;
+
         if(ratestring!="") {
             goldrate_gram.setText(ratestring);
             try {
