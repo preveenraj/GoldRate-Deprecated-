@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdView;*/
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void updatePage(){
 
-        String time = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
+        final String time = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
         // Log.i("time: ",time);
 
         int timeint = Integer.parseInt(time);
@@ -207,39 +208,51 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 datastring = htmldata.toString();
 
+                                Elements tabledata = htmldata.select("table[width='280'][cellspacing='0']");
+                                String reqData = tabledata.text();
+                                Log.i("reqData",reqData);
 
-                                ratestring = datastring.substring(datastring.indexOf("Today")+7);
-                                Log.i("rate ",ratestring);
 
-                                ratestring = ratestring.substring(ratestring.indexOf("Today"));
-                                Log.i("rate ",ratestring);
+                                ratestring = reqData.substring(reqData.lastIndexOf("Rs. "),reqData.lastIndexOf("Rs. ")+8);
+                                Log.i("ratestring",ratestring);
 
-                                ratestring = ratestring.substring(ratestring.indexOf("Rs. ")+5);
-                                Log.i("rate ",ratestring);
+                                String tempStringforDate = reqData.substring(reqData.lastIndexOf("Today")-9,reqData.lastIndexOf("Today")-1);
+                                Log.i("tempData","yoyo"+tempStringforDate+"opop");
 
-                                String tempStringforDate = ratestring;
-                                Log.i("rate ",ratestring);
 
-                                ratestring = ratestring.substring(ratestring.indexOf("Rs. "));
-                                Log.i("rate ",ratestring);
 
-                                ratestring = ratestring.substring(ratestring.indexOf("Rs. "),ratestring.indexOf("<")); //+ " /gm";
-                                Log.i("rate ",ratestring);
+//must uncomment
+//                                ratestring = datastring.substring(datastring.indexOf("Today")+7);
+//                                Log.i("today cutted rate ",ratestring);
+//
+//                                ratestring = ratestring.substring(ratestring.indexOf("Today"));
+//                                Log.i("second today cuttedrate",ratestring);
+//
+//                                ratestring = ratestring.substring(ratestring.indexOf("<table")+20);
+//                                Log.i("third today cuttedrate",ratestring);
+//
+//
+//                                String tempStringforDate = ratestring;
+//
+//                                ratestring = ratestring.substring(ratestring.lastIndexOf("Rs. "));
+//                                Log.i("second Rs. cutted rate ",ratestring);
+//
+//                                ratestring = ratestring.substring(ratestring.indexOf("Rs. "),ratestring.indexOf("<")); //+ " /gm";
+//                                Log.i("third Rs. cutted rate ",ratestring);
 
-                                //    ratestring = datastring.substring(datastring.indexOf("<font color=\"#C00000\">Today ") + 95, datastring.indexOf("<font color=\"#C00000\">Today ") + 103) + " /gm";
-//                                Log.i("datastring: ",datastring);
 
 
                                 goldrate_gram.setText(ratestring);
 
                                 String ratePerGram = ratestring.substring(4); //,ratestring.length()-4);
+                                Log.i("ratePergram",ratePerGram );
+
                                 int ratePerPavan = Integer.parseInt(ratePerGram)*8;
                                 goldrate_pavan.setText("Rs. "+ currencyFormatter.format(ratePerPavan));
 
-                                timeStamp = tempStringforDate.substring(tempStringforDate.indexOf("kg2b") +6, tempStringforDate.indexOf("<br><font color=\"#C00000\">Today "));
+//                                timeStamp = tempStringforDate.substring(tempStringforDate.indexOf("kg2b") +6, tempStringforDate.indexOf("<br><font color=\"#C00000\">Today "));
+                                timeStamp = tempStringforDate;
 
-
-                                //timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
                                 try {
                                     Date tempDate = formatter.parse(timeStamp);
