@@ -216,7 +216,8 @@ public class MainActivity extends AppCompatActivity {
                                 ratestring = reqData.substring(reqData.lastIndexOf("Rs. "),reqData.lastIndexOf("Rs. ")+8);
                                 Log.i("ratestring",ratestring);
 
-                                String tempStringforDate = reqData.substring(reqData.lastIndexOf("Today")-9,reqData.lastIndexOf("Today")-1);
+
+                                String tempStringforDate = reqData.substring(reqData.lastIndexOf("Today")-10,reqData.lastIndexOf("Today")-1).trim();
                                 Log.i("tempData","yoyo"+tempStringforDate+"opop");
 
 
@@ -252,6 +253,7 @@ public class MainActivity extends AppCompatActivity {
 
 //                                timeStamp = tempStringforDate.substring(tempStringforDate.indexOf("kg2b") +6, tempStringforDate.indexOf("<br><font color=\"#C00000\">Today "));
                                 timeStamp = tempStringforDate;
+
 
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");
                                 try {
