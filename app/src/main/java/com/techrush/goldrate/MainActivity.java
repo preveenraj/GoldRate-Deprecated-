@@ -217,8 +217,9 @@ public class MainActivity extends AppCompatActivity {
                                 Log.i("ratestring",ratestring);
 
 
-                                String tempStringforDate = reqData.substring(reqData.lastIndexOf("Today")-10,reqData.lastIndexOf("Today")-1).trim();
-                                Log.i("tempData","yoyo"+tempStringforDate+"opop");
+                                String tempStringforDate = reqData.substring(reqData.lastIndexOf("Today")-16,reqData.lastIndexOf("Today")-1).trim();
+                                tempStringforDate = tempStringforDate.substring(tempStringforDate.indexOf("-")-2,tempStringforDate.lastIndexOf("-")+3);
+                                Log.i("tempData","yoyo"+tempStringforDate+"oyoy");
 
 
 
