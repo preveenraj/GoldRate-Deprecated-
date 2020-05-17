@@ -7,8 +7,8 @@ android {
         applicationId "com.techrush.goldrate"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 20
-        versionName "1.2.8"
+        versionCode 21
+        versionName "1.2.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
